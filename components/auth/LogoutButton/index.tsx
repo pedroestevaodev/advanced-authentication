@@ -9,7 +9,10 @@ const LogoutButton = ({ children }: ChildrenProps) => {
     };
 
     return (
-        <span className="flex items-center cursor-pointer w-full" onClick={onClick}>
+        <span 
+            className="flex items-center cursor-pointer w-full" 
+            onClick={onClick}
+        >
             {children}
         </span>
     );
