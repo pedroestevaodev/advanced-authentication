@@ -6,7 +6,6 @@ import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { FaUser } from "react-icons/fa";
 import LogoutButton from "../LogoutButton";
 import { ExitIcon } from "@radix-ui/react-icons";
-import { logout } from "@/actions/logout";
 
 const UserButton = () => {
     const user = useCurrentUser();

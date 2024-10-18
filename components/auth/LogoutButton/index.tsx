@@ -4,12 +4,12 @@ import { logout } from "@/actions/logout";
 import { ChildrenProps } from "@/types/nextjs";
 
 const LogoutButton = ({ children }: ChildrenProps) => {
-    const onClick = () => {
-        logout();
+    const onClick = async () => {
+        await logout();
     };
 
     return (
-        <span className="cursor-pointer" onClick={onClick}>
+        <span className="flex items-center cursor-pointer w-full" onClick={onClick}>
             {children}
         </span>
     );
