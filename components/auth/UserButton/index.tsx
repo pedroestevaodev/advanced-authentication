@@ -6,6 +6,7 @@ import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { FaUser } from "react-icons/fa";
 import LogoutButton from "../LogoutButton";
 import { ExitIcon } from "@radix-ui/react-icons";
+import { logout } from "@/actions/logout";
 
 const UserButton = () => {
     const user = useCurrentUser();
@@ -21,12 +22,12 @@ const UserButton = () => {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40" align="end">
-                <LogoutButton>
-                    <DropdownMenuItem>
+                <DropdownMenuItem>
+                    <LogoutButton>
                         <ExitIcon className="w-4 h-4 mr-2" />
                         Logout
-                    </DropdownMenuItem>
-                </LogoutButton>
+                    </LogoutButton>
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );

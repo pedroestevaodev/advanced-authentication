@@ -9,7 +9,7 @@ const LogoutButton = ({ children }: ChildrenProps) => {
     };
 
     return (
-        <span className="cursor-pointer" onClick={logout}>
+        <span className="cursor-pointer" onClick={onClick}>
             {children}
         </span>
     );
