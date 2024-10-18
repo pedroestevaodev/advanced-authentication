@@ -4,12 +4,8 @@ import { logout } from "@/actions/logout";
 import { ChildrenProps } from "@/types/nextjs";
 
 const LogoutButton = ({ children }: ChildrenProps) => {
-    const onClick = async () => {
-        try {
-            await logout();
-        } catch (error) {
-            console.error('Error logging out:', error);
-        }
+    const onClick = () => {
+        logout();
     };
 
     return (
