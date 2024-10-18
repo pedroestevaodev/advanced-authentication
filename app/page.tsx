@@ -5,7 +5,7 @@ const Home = () => {
 	return (
 		<div className="relative flex flex-col">
 			<main className="relative flex flex-grow min-h-screen">
-				<LoginButton>
+				<LoginButton asChild>
 					<Button
 						variant="secondary"
 						size="lg"

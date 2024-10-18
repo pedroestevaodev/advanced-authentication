@@ -7,6 +7,11 @@ generator client {
     provider = "prisma-client-js"
 }
 
+enum UserRole {
+    USER
+    ADMIN
+}
+
 model User {
     id            String    @id @default(cuid())
     name          String?
@@ -14,13 +19,12 @@ model User {
     emailVerified DateTime?
     password      String?
     image         String?
+    role          UserRole  @default(USER)
     accounts      Account[]
     sessions      Session[]
 
-    stripeCustomerId       String?   @unique
-    stripeSubscriptionId   String?   @unique
-    stripePriceId          String?
-    stripeCurrentPeriodEnd DateTime?
+    isTwoFactorEnabled Boolean @default(false)
+    twoFactorConfirmation TwoFactorConfirmation?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -63,4 +67,29 @@ model VerificationToken {
     expires    DateTime
 
     @@id([identifier, token])
+}
+
+model PasswordResetToken {
+    identifier String
+    token      String
+    expires    DateTime
+
+    @@id([identifier, token])
+}
+
+model TwoFactorToken {
+    identifier String
+    token      String
+    expires    DateTime
+
+    @@id([identifier, token])
+}
+
+model TwoFactorConfirmation {
+    id        String   @id @default(cuid())
+    userId    String
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([userId])
 }
