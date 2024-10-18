@@ -1,13 +1,13 @@
 'use server';
 
 import { signOut } from "@/services/auth";
-import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export const logout = async () => {
     try {
         await signOut();
 
-        redirect("/auth/login");
+        return NextResponse.redirect(new URL('/auth/login'));
     } catch (error) {
         return { error };
     }
