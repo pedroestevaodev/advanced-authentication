@@ -1,11 +1,6 @@
-// export { auth as middleware } from "@/services/auth";
 import { auth } from "@/services/auth";
 import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes } from "./routes";
 import { NextResponse } from "next/server";
-// import NextAuth from "next-auth";
-// import authConfig from "./services/auth.config";
-
-// const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
     const { pathname } = req.nextUrl;
@@ -21,7 +16,7 @@ export default auth((req) => {
 
     if (isAuthRoute) {
         if (isLoogedIn) {
-            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, req.nextUrl));
+            return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, req.nextUrl));
         }
 
         return undefined;
@@ -36,7 +31,7 @@ export default auth((req) => {
 
         const encodedCallbackUrl = encodeURIComponent(callbackUrl);
 
-        return Response.redirect(new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, req.nextUrl));
+        return NextResponse.redirect(new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, req.nextUrl));
     }
 
     return undefined;

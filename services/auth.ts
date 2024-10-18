@@ -10,7 +10,6 @@ import bcrypt from "bcryptjs";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 import { UserRole } from "@prisma/client";
 import { getAccountByUserId } from "@/data/account";
-// import authConfig from "./auth.config";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     adapter: PrismaAdapter(prisma),
@@ -50,6 +49,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     pages: {
         signIn: "/auth/login",
         error: "/auth/error",
+        signOut: "/",
     },
     events: {
         async linkAccount({ user }) {
@@ -123,5 +123,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return token;
         }
     },
-    // ...authConfig,
 });
