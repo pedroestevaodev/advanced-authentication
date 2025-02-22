@@ -2,6 +2,10 @@
 	"name": "advanced-authentication",
 	"version": "0.1.0",
 	"private": true,
+	"author": {
+		"name": "Pedro Estevão",
+		"url": "https://pedroestevao.com"
+	},
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
