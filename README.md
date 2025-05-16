@@ -2,7 +2,7 @@
 
 <p style="text-align: center;">
     <a href="https://www.youtube.com/@codewithantonio">
-        <img src="https://res.cloudinary.com/dge3g9rcw/image/upload/v1747359807/github/xvipyxmuispursv2l7uw.webp" alt="Illustrative image" />
+        <img src="https://res.cloudinary.com/dge3g9rcw/image/upload/v1747418825/github/sm9h61v21bpazbogclwj.webp" alt="Illustrative image" />
     </a>
 </p>
 
