@@ -1,7 +1,7 @@
 # Advanced Authentication App (Next.js + NextAuth v5)
 
 <p style="text-align: center;">
-    <a href="https://www.pedroestevao.com">
+    <a href="https://www.youtube.com/@codewithantonio">
         <img src="https://res.cloudinary.com/dge3g9rcw/image/upload/v1747359807/github/xvipyxmuispursv2l7uw.webp" alt="Illustrative image" />
     </a>
 </p>
