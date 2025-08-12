@@ -145,13 +145,6 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 > Make sure to set the environment variables in Vercel > Settings > Environment Variables.  
 > Consider switching to PostgreSQL for production environments.
 
-## Learning Credits
-
-This project was built based on the **YouTube** tutorial:
-
-🎬 [**_Next Auth V5 - Advanced Guide (2024)_**](https://youtu.be/1MTyCvS05V4?si=wCSu91vtlZCPbt7P)  
-👨🏻‍💻 [_Code With Antonio_](https://www.youtube.com/@codewithantonio)
-
 ## License
 
 This project is open source and available under the [MIT License](https://mit-license.org/).  
