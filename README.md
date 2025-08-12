@@ -6,7 +6,7 @@
     </a>
 </p>
 
-This is a complete authentication solution built with **Next.js 14** and **NextAuth.js v5 (Auth.js)**. It features robust security practices and real-world features like **2FA**, **role-based access**, **OAuth**, **email verification**, and much more — all implemented using reusable components, server/client utilities, and middleware.
+This is a complete authentication solution built with **Next.js 14** and **NextAuth.js v5 (Auth.js)**. It features robust security practices and real-world features like **2FA**, **role-based access**, **OAuth**, **email verification**, and much more. All implemented using reusable components, server/client utilities, and middleware.
 
 ## About the Project
 
@@ -66,7 +66,7 @@ This project leverages modern technologies and libraries:
 
 ```bash
 git clone https://github.com/pedroestevaodev/advanced-authentication.git
-cd spotify-clone
+cd advanced-authentication
 ```
 
 ### 2. Install dependencies
