@@ -84,13 +84,13 @@ DATABASE_URL="tobemodified"
 DIRECT_DATABASE_URL="tobemodified"
 AUTH_SECRET="tobemodified"
 AUTH_URL="http://localhost:3000"
-APPLICATION_URL="http://localhost:3000"
 GITHUB_CLIENT_ID="tobemodified"
 GITHUB_CLIENT_SECRET="tobemodified"
 GOOGLE_CLIENT_ID="tobemodified"
 GOOGLE_CLIENT_SECRET="tobemodified"
 RESEND_API_KEY="tobemodified"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
+NODE_ENV="development"
 ```
 
 ### 4. Set Up the Database
