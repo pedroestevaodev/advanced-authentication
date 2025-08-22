@@ -5,7 +5,7 @@
     <img src="https://res.cloudinary.com/dge3g9rcw/image/upload/v1755862505/Screenshot-2025-08-22-083236_btu3vt.webp" alt="Illustrative image" />
   </a>
 </p>
-https://res.cloudinary.com/dge3g9rcw/image/upload/v1755862505/Screenshot-2025-08-22-083236_btu3vt.webp
+
 This is a complete authentication solution built with **Next.js 14** and **NextAuth.js v5 (Auth.js)**. It features robust security practices and real-world features like **2FA**, **role-based access**, **OAuth**, **email verification**, and much more. All implemented using reusable components, server/client utilities, and middleware.
 
 ## About the Project
