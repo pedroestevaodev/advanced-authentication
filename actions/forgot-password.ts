@@ -1,13 +1,13 @@
 "use server";
 
-import * as z from "zod";
 import { ForgotPasswordSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/users";
 import { generatePasswordResetToken } from "@/lib/tokens";
 import { sendPasswordResetEmail } from "@/lib/mail";
+import { ForgotPasswordFormData } from "@/types/schemas";
 
 export const forgotPassword = async (
-  values: z.infer<typeof ForgotPasswordSchema>
+  values: ForgotPasswordFormData
 ) => {
   const validatedFields = ForgotPasswordSchema.safeParse(values);
 

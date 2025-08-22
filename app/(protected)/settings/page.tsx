@@ -1,6 +1,5 @@
 "use client";
 
-import * as z from "zod";
 import { settings } from "@/actions/settings";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
@@ -31,6 +30,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { SettingsFormData } from "@/types/schemas";
 
 const SettingsPage = () => {
   const user = useCurrentUser();
@@ -40,7 +40,7 @@ const SettingsPage = () => {
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof SettingsSchema>>({
+  const form = useForm<SettingsFormData>({
     resolver: zodResolver(SettingsSchema),
     defaultValues: {
       name: user?.name || undefined,
@@ -52,7 +52,7 @@ const SettingsPage = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
+  const onSubmit = (values: SettingsFormData) => {
     startTransition(() => {
       settings(values)
         .then((data) => {

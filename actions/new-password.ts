@@ -1,14 +1,14 @@
 "use server";
 
-import * as z from "zod";
 import { NewPasswordSchema } from "@/schemas";
 import { getPasswordResetTokenByToken } from "@/data/password-reset-token";
 import { getUserByEmail } from "@/data/users";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import { NewPasswordFormData } from "@/types/schemas";
 
 export const newPassword = async (
-  values: z.infer<typeof NewPasswordSchema>,
+  values: NewPasswordFormData,
   token?: string | null
 ) => {
   if (!token) {

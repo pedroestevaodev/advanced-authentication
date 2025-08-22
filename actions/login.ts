@@ -13,10 +13,10 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/lib/routes";
 import { LoginSchema } from "@/schemas";
 import { signIn } from "@/lib/auth";
 import { AuthError } from "next-auth";
-import * as z from "zod";
+import { LoginFormData } from "@/types/schemas";
 
 export const login = async (
-  values: z.infer<typeof LoginSchema>,
+  values: LoginFormData,
   callbackUrl?: string | null
 ) => {
   const validatedFields = LoginSchema.safeParse(values);
@@ -84,14 +84,13 @@ export const login = async (
         },
       });
 
-      // return { success: "Two-factor authentication successful!" };
+      return { success: "Two-factor authentication successful!" };
     } else {
       const twoFactorToken = await generateTwoFactorToken(existingUser.email);
 
       await sendTwoFactorEmail(existingUser.email, twoFactorToken.token);
 
       return { twoFactor: true };
-      // return { success: "Two-factor authentication code sent!" };
     }
   }
 
