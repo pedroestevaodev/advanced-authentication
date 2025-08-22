@@ -18,9 +18,6 @@ const CardWrapper = ({
         <Header label={headerLabel} />
       </CardHeader>
       <CardContent>
-        <div className="flex w-full mb-4">
-          <FormWarning message="Unfortunately, credential-based login is not working due to Resend's limitations with free domain verification on Vercel!" />
-        </div>
         {children}
       </CardContent>
       {showSocial && (
