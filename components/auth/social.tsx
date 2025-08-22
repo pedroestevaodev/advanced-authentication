@@ -10,14 +10,14 @@ const Social = () => {
   const callbackUrl = searchParams.get("callbackUrl");
 
   return (
-    <div className="flex items-center gap-x-2 w-full">
+    <div className="grid grid-cols-2 gap-x-2 w-full">
       <Button
         size="lg"
         className="w-full"
         variant="outline"
         onClick={() => loginProviders("google", callbackUrl)}
       >
-        <GoogleIcon size={20} />
+        <GoogleIcon className="size-5" />
       </Button>
 
       <Button
@@ -26,7 +26,7 @@ const Social = () => {
         variant="outline"
         onClick={() => loginProviders("github", callbackUrl)}
       >
-        <GitHubIcon size={20} />
+        <GitHubIcon className="size-6" />
       </Button>
     </div>
   );

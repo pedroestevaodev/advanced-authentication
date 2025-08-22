@@ -28,7 +28,7 @@ const CardWrapper = ({
           <Social />
         </CardFooter>
       )}
-      <CardFooter>
+      <CardFooter className="justify-center">
         <BackButton label={backButtonLabel} href={backButtonHref} />
       </CardFooter>
     </Card>

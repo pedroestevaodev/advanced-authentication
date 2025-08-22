@@ -21,6 +21,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { FormError } from "../forms/form-error";
 import { FormSuccess } from "../forms/form-success";
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "../ui/input-otp";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -85,14 +86,22 @@ const LoginForm = () => {
                 control={form.control}
                 name="code"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex flex-col items-center justify-center gap-4">
                     <FormLabel>Two Factor Code</FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="123-456"
-                        disabled={isPending}
-                      />
+                      <InputOTP maxLength={6} {...field}>
+                        <InputOTPGroup>
+                          <InputOTPSlot index={0} />
+                          <InputOTPSlot index={1} />
+                          <InputOTPSlot index={2} />
+                        </InputOTPGroup>
+                        <InputOTPSeparator />
+                        <InputOTPGroup>
+                          <InputOTPSlot index={3} />
+                          <InputOTPSlot index={4} />
+                          <InputOTPSlot index={5} />
+                        </InputOTPGroup>
+                      </InputOTP>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
