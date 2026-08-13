@@ -43,3 +43,13 @@ next-env.d.ts
 # git worktrees and SDD scratch
 .worktrees/
 .superpowers/
+
+# code intelligence indexes (regenerated locally)
+.gitnexus/
+graphify-out/
+AGENTS.md
+CLAUDE.md
+
+# editor / agent local config
+.cursor/
+.claude/

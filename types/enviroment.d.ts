@@ -1,7 +1,6 @@
 namespace NodeJS {
   export interface ProcessEnv {
     DATABASE_URL: string;
-    DIRECT_DATABASE_URL: string;
     AUTH_SECRET: string;
     AUTH_URL: string;
     GITHUB_CLIENT_ID: string;

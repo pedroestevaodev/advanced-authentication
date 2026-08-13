@@ -81,7 +81,6 @@ Create a `.env.local` file in the root and configure the following variables:
 
 ```bash
 DATABASE_URL="tobemodified"
-DIRECT_DATABASE_URL="tobemodified"
 AUTH_SECRET="tobemodified"
 AUTH_URL="http://localhost:3000"
 APPLICATION_URL="http://localhost:3000"
