@@ -50,6 +50,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
+  @@index([userId])
 }
 
 model Session {
@@ -60,6 +61,8 @@ model Session {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([userId])
 }
 
 model VerificationToken {
@@ -68,22 +71,21 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+  @@index([token])
 }
 
 model PasswordResetToken {
-  identifier String
+  identifier String   @id
   token      String
   expires    DateTime
 
-  @@id([identifier, token])
+  @@index([token])
 }
 
 model TwoFactorToken {
-  identifier String
+  identifier String   @id
   token      String
   expires    DateTime
-
-  @@id([identifier, token])
 }
 
 model TwoFactorConfirmation {

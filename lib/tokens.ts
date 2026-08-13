@@ -1,89 +1,41 @@
-import { prisma } from "./prisma";
-import crypt from "crypto";
+import { randomInt } from "crypto";
 import { v4 as uuidv4 } from "uuid";
-import { getVerificationTokenByEmail } from "@/data/verification-token";
-import { getPasswordResetTokenByEmail } from "@/data/password-reset-token";
+import { prisma } from "@/lib/prisma";
+
+const ONE_HOUR_MS = 3600 * 1000;
+
+const expiresInOneHour = () => new Date(Date.now() + ONE_HOUR_MS);
 
 export const generatePasswordResetToken = async (email: string) => {
   const token = uuidv4();
-  const expires = new Date(new Date().getTime() + 3600 * 1000);
+  const expires = expiresInOneHour();
 
-  const existingToken = await getPasswordResetTokenByEmail(email);
-
-  if (existingToken) {
-    await prisma.verificationToken.delete({
-      where: {
-        identifier_token: {
-          identifier: existingToken.identifier,
-          token: existingToken.token,
-        },
-      },
-    });
-  }
-
-  const passwordResetToken = await prisma.passwordResetToken.create({
-    data: {
-      identifier: email,
-      token,
-      expires,
-    },
+  return prisma.passwordResetToken.upsert({
+    where: { identifier: email },
+    update: { token, expires },
+    create: { identifier: email, token, expires },
   });
-
-  return passwordResetToken;
 };
 
 export const generateVerificationToken = async (email: string) => {
   const token = uuidv4();
-  const expires = new Date(new Date().getTime() + 3600 * 1000);
+  const expires = expiresInOneHour();
 
-  const existingToken = await getVerificationTokenByEmail(email);
-
-  if (existingToken) {
-    await prisma.verificationToken.delete({
-      where: {
-        identifier_token: {
-          identifier: existingToken.identifier,
-          token: existingToken.token,
-        },
-      },
+  return prisma.$transaction(async (tx) => {
+    await tx.verificationToken.deleteMany({ where: { identifier: email } });
+    return tx.verificationToken.create({
+      data: { identifier: email, token, expires },
     });
-  }
-
-  const verificationToken = await prisma.verificationToken.create({
-    data: {
-      identifier: email,
-      token,
-      expires,
-    },
   });
-
-  return verificationToken;
 };
 
 export const generateTwoFactorToken = async (email: string) => {
-  const token = crypt.randomInt(100_100, 1_000_000).toString();
-  const expires = new Date(new Date().getTime() + 3600 * 1000);
+  const token = randomInt(100_000, 1_000_000).toString();
+  const expires = expiresInOneHour();
 
-  const existingToken = await getVerificationTokenByEmail(email);
-
-  if (existingToken) {
-    await prisma.verificationToken.delete({
-      where: {
-        identifier_token: {
-          identifier: existingToken.identifier,
-          token: existingToken.token,
-        },
-      },
-    });
-  }
-
-  const twoFactorToken = await prisma.twoFactorToken.create({
-    data: {
-      identifier: email,
-      token,
-      expires,
-    },
+  return prisma.twoFactorToken.upsert({
+    where: { identifier: email },
+    update: { token, expires },
+    create: { identifier: email, token, expires },
   });
-
-  return twoFactorToken;
 };
