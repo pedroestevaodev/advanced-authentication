@@ -2,6 +2,7 @@
 
 import { ExitIcon } from "@radix-ui/react-icons";
 import { UserIcon } from "lucide-react";
+import { logout } from "@/actions/logout";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
@@ -26,7 +27,7 @@ const UserButton = () => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40" align="end">
-        <DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => logout()}>
           <LogoutButton>
             <ExitIcon className="w-4 h-4 mr-2" />
             Logout

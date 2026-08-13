@@ -3,16 +3,26 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 
+export const logResendResult = (
+  action: string,
+  result: { error: { message: string } | null },
+) => {
+  if (result.error) {
+    console.error(`Failed to ${action}`, result.error.message);
+  }
+};
+
 export const sendPasswordResetEmail = async (email: string, token: string) => {
   const resetLink = `${domain}/auth/reset-password?token=${token}`;
 
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: "contato@pedroestevao.com",
       to: email,
       subject: "Reset your password",
       html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`,
     });
+    logResendResult("send password reset email", result);
   } catch (error) {
     console.error("Failed to send password reset email", error);
   }
@@ -22,12 +32,13 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${domain}/auth/verify-email?token=${token}`;
 
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: "contato@pedroestevao.com",
       to: email,
       subject: "Confirm your email address",
       html: `<p>Click <a href="${confirmLink}">here</a> to confirm your email address.</p>`,
     });
+    logResendResult("send verification email", result);
   } catch (error) {
     console.error("Failed to send verification email", error);
   }
@@ -35,12 +46,13 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 
 export const sendTwoFactorEmail = async (email: string, token: string) => {
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: "contato@pedroestevao.com",
       to: email,
       subject: "Two-factor authentication",
       html: `<p>Your 2FA code is: ${token}</p>`,
     });
+    logResendResult("send two-factor email", result);
   } catch (error) {
     console.error("Failed to send two-factor email", error);
   }

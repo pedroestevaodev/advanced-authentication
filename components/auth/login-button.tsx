@@ -1,5 +1,6 @@
 "use client";
 
+import { Slot } from "@radix-ui/react-slot";
 import { useRouter } from "next/navigation";
 import type { LoginButtonProps } from "@/types/components";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
@@ -27,10 +28,16 @@ const LoginButton = ({
     );
   }
 
+  const Comp = asChild ? Slot : "button";
+
   return (
-    <button type="button" onClick={onClick} className="cursor-pointer w-fit">
+    <Comp
+      type={asChild ? undefined : "button"}
+      onClick={onClick}
+      className={asChild ? undefined : "cursor-pointer w-fit"}
+    >
       {children}
-    </button>
+    </Comp>
   );
 };
 

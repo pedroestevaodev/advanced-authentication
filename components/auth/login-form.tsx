@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { unstable_rethrow, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "@/actions/login";
@@ -70,7 +70,8 @@ const LoginForm = () => {
             setShowTwoFactor(true);
           }
         })
-        .catch((_error) => {
+        .catch((error) => {
+          unstable_rethrow(error);
           setError("Something went wrong!");
         });
     });
