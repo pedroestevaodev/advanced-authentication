@@ -1,24 +1,24 @@
 "use server";
 
-import { after } from "next/server";
 import bcrypt from "bcryptjs";
+import { after } from "next/server";
 import { AuthError } from "next-auth";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 import { getUserByEmail } from "@/data/users";
+import { signIn } from "@/lib/auth";
+import {
+  assertLocalPassword,
+  INVALID_CREDENTIALS,
+} from "@/lib/login-credentials";
 import { sendTwoFactorEmail, sendVerificationEmail } from "@/lib/mail";
 import { prisma } from "@/lib/prisma";
+import { DEFAULT_LOGIN_REDIRECT } from "@/lib/routes";
 import {
   generateTwoFactorToken,
   generateVerificationToken,
 } from "@/lib/tokens";
-import { DEFAULT_LOGIN_REDIRECT } from "@/lib/routes";
 import { LoginSchema } from "@/schemas";
-import { signIn } from "@/lib/auth";
-import { LoginFormData } from "@/types/schemas";
-import {
-  INVALID_CREDENTIALS,
-  assertLocalPassword,
-} from "@/lib/login-credentials";
+import type { LoginFormData } from "@/types/schemas";
 
 export const login = async (
   values: LoginFormData,

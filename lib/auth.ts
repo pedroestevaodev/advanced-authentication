@@ -1,13 +1,13 @@
-import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { prisma } from "@/lib/prisma";
-import { LoginSchema } from "@/schemas";
-import { getUserByEmail, getUserById } from "@/data/users";
+import NextAuth from "next-auth";
+import Credentials from "next-auth/providers/credentials";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
+import { getUserByEmail, getUserById } from "@/data/users";
 import authConfig from "@/lib/auth.config";
 import { enrichJwtIfNeeded } from "@/lib/jwt-enrich";
+import { prisma } from "@/lib/prisma";
+import { LoginSchema } from "@/schemas";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),

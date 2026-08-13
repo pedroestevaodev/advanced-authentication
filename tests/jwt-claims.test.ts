@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { applyJwtClaims } from "@/lib/jwt-claims";
 import type { JWT } from "next-auth/jwt";
+import { applyJwtClaims } from "@/lib/jwt-claims";
 
 const baseToken = { sub: "user_1" } as JWT;
 

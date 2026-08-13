@@ -1,10 +1,10 @@
+import type { UserRole } from "@prisma/client";
 import type { Account } from "next-auth";
 import type { JWT } from "next-auth/jwt";
-import type { UserRole } from "@prisma/client";
 import {
   applyJwtClaims,
-  type JwtUserFields,
   type JwtUpdateSession,
+  type JwtUserFields,
 } from "@/lib/jwt-claims";
 
 export type DbUserForJwt = {

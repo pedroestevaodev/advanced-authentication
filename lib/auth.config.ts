@@ -1,8 +1,8 @@
+import type { UserRole } from "@prisma/client";
 import type { NextAuthConfig } from "next-auth";
 import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import { applyJwtClaims } from "@/lib/jwt-claims";
-import type { UserRole } from "@prisma/client";
 
 export default {
   providers: [

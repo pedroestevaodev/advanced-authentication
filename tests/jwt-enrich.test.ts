@@ -1,6 +1,6 @@
 import { describe, expect, mock, test } from "bun:test";
-import { enrichJwtIfNeeded } from "@/lib/jwt-enrich";
 import type { JWT } from "next-auth/jwt";
+import { enrichJwtIfNeeded } from "@/lib/jwt-enrich";
 
 const token = { sub: "user_1" } as JWT;
 

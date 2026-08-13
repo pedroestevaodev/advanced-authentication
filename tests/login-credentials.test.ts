@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import {
-  INVALID_CREDENTIALS,
   assertLocalPassword,
+  INVALID_CREDENTIALS,
 } from "@/lib/login-credentials";
 
 describe("assertLocalPassword", () => {

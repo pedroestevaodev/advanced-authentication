@@ -1,11 +1,11 @@
 "use server";
 
-import { DEFAULT_LOGIN_REDIRECT } from "@/lib/routes";
 import { signIn } from "@/lib/auth";
+import { DEFAULT_LOGIN_REDIRECT } from "@/lib/routes";
 
 export const loginProviders = async (
   provider: "google" | "github",
-  callbackUrl?: string | null
+  callbackUrl?: string | null,
 ) => {
   try {
     await signIn(provider, {
