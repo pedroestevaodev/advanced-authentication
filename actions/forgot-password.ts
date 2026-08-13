@@ -1,14 +1,13 @@
 "use server";
 
-import { ForgotPasswordSchema } from "@/schemas";
+import { after } from "next/server";
 import { getUserByEmail } from "@/data/users";
-import { generatePasswordResetToken } from "@/lib/tokens";
 import { sendPasswordResetEmail } from "@/lib/mail";
-import { ForgotPasswordFormData } from "@/types/schemas";
+import { generatePasswordResetToken } from "@/lib/tokens";
+import { ForgotPasswordSchema } from "@/schemas";
+import type { ForgotPasswordFormData } from "@/types/schemas";
 
-export const forgotPassword = async (
-  values: ForgotPasswordFormData
-) => {
+export const forgotPassword = async (values: ForgotPasswordFormData) => {
   const validatedFields = ForgotPasswordSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -16,19 +15,17 @@ export const forgotPassword = async (
   }
 
   const { email } = validatedFields.data;
-
   const existingUser = await getUserByEmail(email);
 
-  if (!existingUser) {
-    return { error: "Email not found!" };
+  if (existingUser) {
+    const passwordResetToken = await generatePasswordResetToken(email);
+    after(() =>
+      sendPasswordResetEmail(
+        passwordResetToken.identifier,
+        passwordResetToken.token,
+      ),
+    );
   }
-
-  const passwordResetToken = await generatePasswordResetToken(email);
-
-  await sendPasswordResetEmail(
-    passwordResetToken.identifier,
-    passwordResetToken.token
-  );
 
   return { success: "Email sent!" };
 };

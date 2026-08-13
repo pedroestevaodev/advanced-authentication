@@ -11,9 +11,7 @@ export const verification = async (token: string) => {
     return { error: "Invalid token!" };
   }
 
-  const hasExpired = new Date(existingToken.expires) < new Date();
-
-  if (hasExpired) {
+  if (new Date(existingToken.expires) < new Date()) {
     return { error: "Token has expired!" };
   }
 
@@ -23,22 +21,23 @@ export const verification = async (token: string) => {
     return { error: "Email not found!" };
   }
 
-  await prisma.user.update({
-    where: { id: existingUser.id },
-    data: {
-      emailVerified: new Date(),
-      email: existingToken.identifier,
-    },
-  });
-
-  await prisma.verificationToken.delete({
-    where: {
-      identifier_token: {
-        identifier: existingToken.identifier,
-        token: existingToken.token,
+  await prisma.$transaction([
+    prisma.user.update({
+      where: { id: existingUser.id },
+      data: {
+        emailVerified: new Date(),
+        email: existingToken.identifier,
       },
-    },
-  });
+    }),
+    prisma.verificationToken.delete({
+      where: {
+        identifier_token: {
+          identifier: existingToken.identifier,
+          token: existingToken.token,
+        },
+      },
+    }),
+  ]);
 
   return { success: "Email verified!" };
 };

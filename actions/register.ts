@@ -1,12 +1,13 @@
 "use server";
 
-import { RegisterSchema } from "@/schemas";
 import bcrypt from "bcryptjs";
-import { prisma } from "@/lib/prisma";
+import { after } from "next/server";
 import { getUserByEmail } from "@/data/users";
-import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
-import { RegisterFormData } from "@/types/schemas";
+import { prisma } from "@/lib/prisma";
+import { generateVerificationToken } from "@/lib/tokens";
+import { RegisterSchema } from "@/schemas";
+import type { RegisterFormData } from "@/types/schemas";
 
 export const register = async (values: RegisterFormData) => {
   const validatedFields = RegisterSchema.safeParse(values);
@@ -16,13 +17,13 @@ export const register = async (values: RegisterFormData) => {
   }
 
   const { email, password, name } = validatedFields.data;
-  const hashedPassword = await bcrypt.hash(password, 10);
-
   const existingUser = await getUserByEmail(email);
 
   if (existingUser) {
     return { error: "Email already in use!" };
   }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   await prisma.user.create({
     data: {
@@ -33,8 +34,7 @@ export const register = async (values: RegisterFormData) => {
   });
 
   const verificationToken = await generateVerificationToken(email);
-
-  await sendVerificationEmail(email, verificationToken.token);
+  after(() => sendVerificationEmail(email, verificationToken.token));
 
   return { success: "Confirmation email sent!" };
 };
