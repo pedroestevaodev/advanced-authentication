@@ -1,15 +1,18 @@
+import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
-import { auth } from "./lib/auth";
+import authConfig from "@/lib/auth.config";
 import {
   apiAuthPrefix,
   authRoutes,
   DEFAULT_LOGIN_REDIRECT,
   publicRoutes,
-} from "./lib/routes";
+} from "@/lib/routes";
+
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
-  const isLoogedIn = !!req.auth;
+  const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(pathname);
@@ -20,16 +23,16 @@ export default auth((req) => {
   }
 
   if (isAuthRoute) {
-    if (isLoogedIn) {
+    if (isLoggedIn) {
       return NextResponse.redirect(
-        new URL(DEFAULT_LOGIN_REDIRECT, req.nextUrl)
+        new URL(DEFAULT_LOGIN_REDIRECT, req.nextUrl),
       );
     }
 
     return undefined;
   }
 
-  if (!isLoogedIn && !isPublicRoute) {
+  if (!isLoggedIn && !isPublicRoute) {
     let callbackUrl = pathname;
 
     if (req.nextUrl.search) {
@@ -39,7 +42,7 @@ export default auth((req) => {
     const encodedCallbackUrl = encodeURIComponent(callbackUrl);
 
     return NextResponse.redirect(
-      new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, req.nextUrl)
+      new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, req.nextUrl),
     );
   }
 
