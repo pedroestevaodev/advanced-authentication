@@ -59,10 +59,7 @@ export const login = async (
 
       await prisma.twoFactorToken.delete({
         where: {
-          identifier_token: {
-            identifier: existingUser.email,
-            token: twoFactorToken.token,
-          },
+          identifier: existingUser.email,
         },
       });
 

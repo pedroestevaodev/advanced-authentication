@@ -50,10 +50,7 @@ export const newPassword = async (
 
   await prisma.passwordResetToken.delete({
     where: {
-      identifier_token: {
-        identifier: existingToken.identifier,
-        token: existingToken.token,
-      },
+      identifier: existingToken.identifier,
     },
   });
 
