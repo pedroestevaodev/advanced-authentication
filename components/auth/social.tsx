@@ -1,9 +1,9 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Button } from "../ui/button";
 import { loginProviders } from "@/actions/othersProviders";
 import { GitHubIcon, GoogleIcon } from "../icons";
+import { Button } from "../ui/button";
 
 const Social = () => {
   const searchParams = useSearchParams();

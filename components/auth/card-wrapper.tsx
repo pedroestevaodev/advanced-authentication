@@ -1,6 +1,5 @@
-import { CardWrapperProps } from "@/types/components";
+import type { CardWrapperProps } from "@/types/components";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import { FormWarning } from "../forms/form-warning";
 import { BackButton } from "./back-button";
 import { Header } from "./header";
 import { Social } from "./social";
@@ -17,9 +16,7 @@ const CardWrapper = ({
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
-      <CardContent>
-        {children}
-      </CardContent>
+      <CardContent>{children}</CardContent>
       {showSocial && (
         <CardFooter>
           <Social />

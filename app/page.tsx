@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { LoginButton } from "@/components/auth/login-button";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 const Home = () => {
   return (

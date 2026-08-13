@@ -8,9 +8,11 @@ export const LoginSchema = z.object({
   password: z.string().min(1, {
     message: "Password is required",
   }),
-  code: z.optional(z.string().min(6, {
-    message: "Minimum 6 characters required",
-  })),
+  code: z.optional(
+    z.string().min(6, {
+      message: "Minimum 6 characters required",
+    }),
+  ),
 });
 
 export const RegisterSchema = z.object({
@@ -57,7 +59,7 @@ export const SettingsSchema = z
     {
       message: "New password is required",
       path: ["newPassword"],
-    }
+    },
   )
   .refine(
     (data) => {
@@ -70,5 +72,5 @@ export const SettingsSchema = z
     {
       message: "Password is required!",
       path: ["password"],
-    }
+    },
   );

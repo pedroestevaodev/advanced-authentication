@@ -1,12 +1,15 @@
 "use client";
 
-import { settings } from "@/actions/settings";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { UserRole } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { SettingsSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { settings } from "@/actions/settings";
+import { FormError } from "@/components/forms/form-error";
+import { FormSuccess } from "@/components/forms/form-success";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -17,11 +20,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { Button } from "@/components/ui/button";
-import { UserRole } from "@prisma/client";
-import { FormError } from "@/components/forms/form-error";
-import { FormSuccess } from "@/components/forms/form-success";
 import {
   Select,
   SelectContent,
@@ -30,7 +28,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { SettingsFormData } from "@/types/schemas";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { SettingsSchema } from "@/schemas";
+import type { SettingsFormData } from "@/types/schemas";
 
 const SettingsPage = () => {
   const user = useCurrentUser();

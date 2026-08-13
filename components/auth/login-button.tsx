@@ -1,7 +1,7 @@
 "use client";
 
-import { LoginButtonProps } from "@/types/components";
 import { useRouter } from "next/navigation";
+import type { LoginButtonProps } from "@/types/components";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { LoginForm } from "./login-form";
 
@@ -28,9 +28,9 @@ const LoginButton = ({
   }
 
   return (
-    <span onClick={onClick} className="cursor-pointer w-fit">
+    <button type="button" onClick={onClick} className="cursor-pointer w-fit">
       {children}
-    </span>
+    </button>
   );
 };
 

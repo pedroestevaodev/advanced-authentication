@@ -1,11 +1,11 @@
-import {
+import type { z } from "zod";
+import type {
   ForgotPasswordSchema,
   LoginSchema,
   NewPasswordSchema,
   RegisterSchema,
   SettingsSchema,
 } from "@/schemas";
-import { z } from "zod";
 
 export type ForgotPasswordFormData = z.infer<typeof ForgotPasswordSchema>;
 export type LoginFormData = z.infer<typeof LoginSchema>;

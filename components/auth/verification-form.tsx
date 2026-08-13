@@ -1,12 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { verification } from "@/actions/mail-verification";
-import { CardWrapper } from "./card-wrapper";
+import { useCallback, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
-import { FormSuccess } from "../forms/form-success";
+import { verification } from "@/actions/mail-verification";
 import { FormError } from "../forms/form-error";
+import { FormSuccess } from "../forms/form-success";
+import { CardWrapper } from "./card-wrapper";
 
 const VerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
@@ -28,7 +28,7 @@ const VerificationForm = () => {
         setSuccess(data.success);
         setError(data.error);
       })
-      .catch((error) => {
+      .catch((_error) => {
         setError("Something went wrong!");
       });
   }, [token, success, error]);

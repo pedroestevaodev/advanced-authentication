@@ -1,13 +1,16 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
-import { LoginFormData } from "@/types/schemas";
-import { LoginSchema } from "@/schemas";
 import { login } from "@/actions/login";
-import { CardWrapper } from "./card-wrapper";
+import { LoginSchema } from "@/schemas";
+import type { LoginFormData } from "@/types/schemas";
+import { FormError } from "../forms/form-error";
+import { FormSuccess } from "../forms/form-success";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
@@ -17,11 +20,13 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { FormError } from "../forms/form-error";
-import { FormSuccess } from "../forms/form-success";
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "../ui/input-otp";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "../ui/input-otp";
+import { CardWrapper } from "./card-wrapper";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -65,7 +70,7 @@ const LoginForm = () => {
             setShowTwoFactor(true);
           }
         })
-        .catch((error) => {
+        .catch((_error) => {
           setError("Something went wrong!");
         });
     });

@@ -1,6 +1,6 @@
-import { BackButtonProps } from "@/types/components";
-import { Button } from "../ui/button";
 import Link from "next/link";
+import type { BackButtonProps } from "@/types/components";
+import { Button } from "../ui/button";
 
 const BackButton = ({ href, label }: BackButtonProps) => {
   return (

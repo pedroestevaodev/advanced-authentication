@@ -1,7 +1,7 @@
 "use client";
 
 import { useCurrentRole } from "@/hooks/useCurrentRole";
-import { RoleGateProps } from "@/types/components";
+import type { RoleGateProps } from "@/types/components";
 import { FormError } from "../forms/form-error";
 
 const RoleGate = ({ children, allowedRole }: RoleGateProps) => {

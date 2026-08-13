@@ -1,5 +1,5 @@
 import { logout } from "@/actions/logout";
-import { ChildrenProps } from "@/types/nextjs";
+import type { ChildrenProps } from "@/types/nextjs";
 
 const LogoutButton = ({ children }: ChildrenProps) => {
   const onClick = () => {
@@ -7,9 +7,13 @@ const LogoutButton = ({ children }: ChildrenProps) => {
   };
 
   return (
-    <span className="flex items-center cursor-pointer w-full" onClick={onClick}>
+    <button
+      type="button"
+      className="flex items-center cursor-pointer w-full"
+      onClick={onClick}
+    >
       {children}
-    </span>
+    </button>
   );
 };
 

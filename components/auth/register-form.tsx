@@ -1,12 +1,14 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterFormData } from "@/types/schemas";
-import { RegisterSchema } from "@/schemas";
 import { register } from "@/actions/register";
-import { CardWrapper } from "./card-wrapper";
+import { RegisterSchema } from "@/schemas";
+import type { RegisterFormData } from "@/types/schemas";
+import { FormError } from "../forms/form-error";
+import { FormSuccess } from "../forms/form-success";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
@@ -15,10 +17,8 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { FormError } from "../forms/form-error";
-import { FormSuccess } from "../forms/form-success";
-import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { CardWrapper } from "./card-wrapper";
 
 const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("");

@@ -1,4 +1,4 @@
-import { ChildrenProps } from "@/types/nextjs";
+import type { ChildrenProps } from "@/types/nextjs";
 
 const AuthLayout = async ({ children }: ChildrenProps) => {
   return (

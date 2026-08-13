@@ -1,6 +1,6 @@
-import { UserInfoProps } from "@/types/components";
-import { Card, CardContent, CardHeader } from "./ui/card";
+import type { UserInfoProps } from "@/types/components";
 import { Badge } from "./ui/badge";
+import { Card, CardContent, CardHeader } from "./ui/card";
 
 const UserInfo = ({ user, label }: UserInfoProps) => {
   return (

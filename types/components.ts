@@ -1,5 +1,5 @@
-import { UserRole } from "@prisma/client";
-import { ExtendedUser } from "./next-auth";
+import type { UserRole } from "@prisma/client";
+import type { ExtendedUser } from "./next-auth";
 
 export interface BackButtonProps {
   href: string;

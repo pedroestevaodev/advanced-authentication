@@ -7,11 +7,7 @@ export const loginProviders = async (
   provider: "google" | "github",
   callbackUrl?: string | null,
 ) => {
-  try {
-    await signIn(provider, {
-      callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
-    });
-  } catch (error) {
-    throw error;
-  }
+  await signIn(provider, {
+    callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+  });
 };

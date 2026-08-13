@@ -2,8 +2,8 @@ import { Providers } from "@/components/providers";
 import { fontSans } from "@/config/fonts";
 import { cn } from "@/helpers/auxiliary-helpers";
 import "@/styles/globals.css";
-import { ChildrenProps } from "@/types/nextjs";
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
+import type { ChildrenProps } from "@/types/nextjs";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +16,7 @@ const RootLayout = ({ children }: Readonly<ChildrenProps>) => {
       <body
         className={cn(
           "min-h-screen bg-[#fafafa] antialiased",
-          fontSans.className
+          fontSans.className,
         )}
       >
         <Providers>{children}</Providers>

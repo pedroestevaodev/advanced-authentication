@@ -1,6 +1,6 @@
 import { poppins } from "@/config/fonts";
 import { cn } from "@/helpers/auxiliary-helpers";
-import { HeaderProps } from "@/types/components";
+import type { HeaderProps } from "@/types/components";
 
 const Header = ({ label }: HeaderProps) => {
   return (

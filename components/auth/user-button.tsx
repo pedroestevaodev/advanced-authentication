@@ -1,7 +1,9 @@
 "use client";
 
-import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { ExitIcon } from "@radix-ui/react-icons";
+import { UserIcon } from "lucide-react";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,8 +11,6 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { LogoutButton } from "./logout-button";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { UserIcon } from "lucide-react";
 
 const UserButton = () => {
   const user = useCurrentUser();

@@ -1,5 +1,5 @@
 import { Navbar } from "@/components/navbar";
-import { ChildrenProps } from "@/types/nextjs";
+import type { ChildrenProps } from "@/types/nextjs";
 
 const ProtectedLayout = ({ children }: ChildrenProps) => {
   return (

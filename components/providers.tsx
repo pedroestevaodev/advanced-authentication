@@ -1,6 +1,6 @@
-import { auth } from "@/lib/auth";
-import { ChildrenProps } from "@/types/nextjs";
 import { SessionProvider } from "next-auth/react";
+import { auth } from "@/lib/auth";
+import type { ChildrenProps } from "@/types/nextjs";
 import { Toaster } from "./ui/sonner";
 
 const Providers = async ({ children }: ChildrenProps) => {

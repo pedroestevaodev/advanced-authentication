@@ -1,5 +1,5 @@
-import { FormProps } from "@/types/components";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import type { FormProps } from "@/types/components";
 
 const FormError = ({ message }: FormProps) => {
   if (!message) return null;
