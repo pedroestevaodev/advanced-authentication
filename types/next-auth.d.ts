@@ -12,3 +12,11 @@ declare module "next-auth" {
     user: ExtendedUser;
   }
 }
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    role?: UserRole;
+    isTwoFactorEnabled?: boolean;
+    isOauth?: boolean;
+  }
+}
